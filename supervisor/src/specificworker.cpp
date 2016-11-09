@@ -35,33 +35,27 @@ SpecificWorker::~SpecificWorker()
 }
 
 bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
-{
-
-
-
-	
-	timer.start(Period);
-	
+{	
+	timer.start(Period);	
 
 	return true;
 }
 
 void SpecificWorker::compute()
 {
-// 	try
-// 	{
-// 		camera_proxy->getYImage(0,img, cState, bState);
-// 		memcpy(image_gray.data, &img[0], m_width*m_height*sizeof(uchar));
-// 		searchTags(image_gray);
-// 	}
-// 	catch(const Ice::Exception &e)
-// 	{
-// 		std::cout << "Error reading from Camera" << e << std::endl;
-// 	}
+
+    gotopoint_proxy->go("", 1000, 2000, 0);
+  
 }
 
 
 
+
+////////////////////////////////////////////7
+void SpecificWorker::newAprilTag(const tagsList& tags)
+{
+
+}
 
 
 

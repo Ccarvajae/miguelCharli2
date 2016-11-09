@@ -1,8 +1,17 @@
-CommonBehavior.Endpoints=tcp -p 1
+CommonBehavior.Endpoints=tcp -p 11750
+
+# Proxies for required interfaces
+GotoPointProxy = gotopoint:tcp -h localhost -p 11550
+
+
+# Endpoints for subscriptions
+AprilTagsTopic.Endpoints=tcp -p 11650
 
 
 # Proxies for required interfaces
-GotoPointProxy = gotopoint:tcp -h localhost -p 0
+DifferentialRobotProxy = differentialrobot:tcp -h localhost -p 10004
+
+TopicManager.Proxy=IceStorm/TopicManager:default -p 9999
 
 
 
