@@ -36,27 +36,60 @@ SpecificWorker::~SpecificWorker()
 
 bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 {	
-	timer.start(Period);	
-
-	return true;
+    innermodel = new InnerModel("/home/salabeta/robocomp/files/innermodel/simpleworld.xml");
+    timer.start(Period);	
+    return true;
 }
 
-void SpecificWorker::compute()
-{
+void SpecificWorker::compute(){
 
-    gotopoint_proxy->go("", 1000, 2000, 0);
+    //gotopoint_proxy->go("", 1000, 2000, 0);
+  
+  switch(state){
+    case State::INIT:
+	cout<<"INIT";
+	initM();
+    break;
+    case State::SEARCH:
+	cout<<"SEARCH";
+	searchM();
+    break;
+    case State::MARK0:
+	cout<<"MARK0";
+	irAMarca(0);
+    break;
+    case State::MARK1:
+	cout<<"MARK1";
+	irAMarca(1);
+    break;
+    case State::MARK2:
+	cout<<"MARK2";
+	irAMarca(2);
+    break;
+    case State::MARK3:
+	cout<<"MARK3";
+	irAMarca(3);
+    break;  
+  }
+}
+
+void SpecificWorker::newAprilTag(const tagsList &tags)
+{
+  qDebug<<tags[0];
   
 }
 
+void SpecificWorker::initM(){
 
-
-
-////////////////////////////////////////////7
-void SpecificWorker::newAprilTag(const tagsList& tags)
-{
-
+  
 }
 
+void SpecificWorker::searchM(){
 
+  
+}
 
+void SpecificWorker::irAMarca(int marca){
 
+  
+}

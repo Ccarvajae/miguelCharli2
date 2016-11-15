@@ -39,13 +39,20 @@ public:
 	
 	void newAprilTag(const tagsList &tags);
 
-
-
+	void initM();
+	void searchM();  
+	void irAMarca(int marca);
+	
+	
 public slots:
 	void compute(); 	
 
 private:
-	
+  enum class State {INIT,SEARCH, MARK0, MARK1, MARK2, MARK3};
+  State state;
+  InnerModel* innermodel;
+  
+  
 };
 
 #endif
