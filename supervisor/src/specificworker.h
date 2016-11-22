@@ -39,7 +39,7 @@ public:
 	
 	void newAprilTag(const tagsList &tags);
 
-	void initM();
+	void waitM();
 	void searchM();  
 	void irAMarca(int marca);
 	
@@ -48,9 +48,50 @@ public slots:
 	void compute(); 	
 
 private:
-  enum class State {INIT,SEARCH, MARK0, MARK1, MARK2, MARK3};
-  State state;
+   struct Tag{
+    mutable QMutex m;
+    InnerModel *inner;
+    int id;
+    QVec poseAnt = QVec::zeros(3);
+    QVec pose = QVec::zeros(3);
+	
+    QVec getPose(){
+      QMutexLocker lm(&m);
+      return pose;
+    }
+	
+    void init(InnerModel *innermodel){
+      inner = innermodel;
+    }
+	
+    void copy(float x, float z, int id_){
+      QMutexLocker lm(&m);
+      qDebug()<<"COORDENADAS RESPECTO A LA CAMARA: X: "<<x<<"    Z: "<<z;
+      pose = inner->transform("world", QVec::vec3(x,0,z),"rgbd");	//base
+      qDebug()<<"COORDENADAS RESPECTO A LA SIMULACION: X: "<< pose.x()<<"   Z: "<<pose.z();	
+      id = id_;
+    }
+	
+    int getID(){
+      QMutexLocker lm(&m);
+      return id;
+    }
+	
+    bool changed(){
+      QMutexLocker lm(&m);      
+      float d = (pose - poseAnt).norm2();
+      poseAnt = pose;
+      return d > 100;
+    }
+  };
+  
+  
+  Tag tag;    
+  
+  enum class State {WAIT,SEARCH, MARK0, MARK1, MARK2, MARK3};
+  State state = State::SEARCH;
   InnerModel* innermodel;
+  int contTags = 0;
   
   
 };
