@@ -146,6 +146,7 @@ void SpecificWorker::irAMarca(int marca){
     case 2:
 	contTags++;
 	state = State::WAIT;     
+	contTags++%4;
 	qDebug()<<"LLEGADA A MARCA, SE BUSCA LA SIGUIENTE MARCA CON EL ID :"<<contTags;
     break;  
     case 3:

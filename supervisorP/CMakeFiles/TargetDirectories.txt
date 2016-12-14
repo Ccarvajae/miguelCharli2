@@ -1,0 +1,3 @@
+/home/salabeta/robocomp/components/miguelCharli2/supervisorP/CMakeFiles/edit_cache.dir
+/home/salabeta/robocomp/components/miguelCharli2/supervisorP/CMakeFiles/rebuild_cache.dir
+/home/salabeta/robocomp/components/miguelCharli2/supervisorP/CMakeFiles/ui_mainUI.dir
